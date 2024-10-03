@@ -75,7 +75,7 @@ namespace VentaAutosMVC.Controllers
                 context.Entry(marca).State = EntityState.Modified;
                 context.SaveChanges();
 
-               
+                TempData["SweetAlertMessage"] = "Marca actualizada correctamente.";
                 return RedirectToAction("Index");
             }
             return View(marca);
