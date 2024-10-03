@@ -15,7 +15,7 @@ namespace VentaAutosMVC.Controllers
     {
         private VentaAutosEntities1 db = new VentaAutosEntities1();
 
-        // GET: Ventas
+        // GET: Ventas 
         public ActionResult Index()
         {
             var venta = db.Venta.Include(v => v.Agencia).Include(v => v.Auto).Include(v => v.Cliente).Include(v => v.Vendedor);
