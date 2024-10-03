@@ -1,0 +1,39 @@
+﻿@model IEnumerable<VentaAutosMVC.Models.Agencia>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Agencias</h2>
+
+    <p>
+        @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+    </p>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Nombre)</th>
+                <th>@Html.DisplayNameFor(model => model.Telefono)</th>
+                <th>@Html.DisplayNameFor(model => model.Direcciones.Calle)</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.Nombre)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Telefono)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Direcciones.Calle)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID_Agencia }, new { @class = "btn btn-warning btn-sm" }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.ID_Agencia }, new { @class = "btn btn-info btn-sm" }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID_Agencia }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

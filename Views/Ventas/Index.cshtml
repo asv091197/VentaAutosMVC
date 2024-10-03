@@ -1,0 +1,79 @@
+﻿@model IEnumerable<VentaAutosMVC.Models.Venta>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2 class="my-4">Ventas</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary mb-3" })
+</p>
+
+<table class="table table-striped table-bordered">
+    <thead class="thead-dark">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Estatus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IVA)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                Agencia
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Auto.Modelo)
+            </th>
+            <th>
+               Cliente
+            </th>
+            <th>
+                Vendedor
+            </th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Estatus)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IVA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Agencia.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Auto.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cliente.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Vendedor.NombreCompleto)
+                </td>
+                <td class="text-center">
+                    <div class="btn-group" role="group">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID_Venta }, new { @class = "btn btn-sm btn-warning" })
+                        @Html.ActionLink("Details", "Details", new { id = item.ID_Venta }, new { @class = "btn btn-sm btn-info mx-2" })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID_Venta }, new { @class = "btn btn-sm btn-danger" })
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Home", new { @class = "btn btn-secondary" })
+</div>

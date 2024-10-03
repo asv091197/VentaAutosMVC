@@ -1,0 +1,89 @@
+﻿@model VentaAutosMVC.Models.Auto
+
+@{
+    ViewBag.Title = "Eliminar Auto";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Eliminar Auto</h2>
+
+    <div class="alert alert-danger mt-4" role="alert">
+        <h4 class="alert-heading">¿Estás seguro que deseas eliminar este auto?</h4>
+        <p>Esta acción no se puede deshacer. Toda la información relacionada con este auto será eliminada permanentemente.</p>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-header bg-warning text-dark">
+            <h4>Detalles del Auto</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Modelo)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Modelo)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Color)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Color)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Cilindros)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Cilindros)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Precio)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Precio)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Anio)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Anio)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Estado)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Estado)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Marca.Nombre)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Marca.Nombre)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.TipoAuto.Tipo)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.TipoAuto.Tipo)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-group mt-4">
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+            @Html.ActionLink("Cancelar", "Index", null, new { @class = "btn btn-secondary ml-2" })
+        </div>
+    }
+</div>

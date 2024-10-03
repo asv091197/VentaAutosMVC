@@ -1,0 +1,52 @@
+﻿@model VentaAutosMVC.Models.Auto
+
+@{
+    ViewBag.Title = "Detalles del Auto";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Detalles del Auto</h2>
+    <hr class="mb-4">
+
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Información del Auto</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-4">Modelo</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Modelo)</dd>
+
+                <dt class="col-sm-4">Color</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Color)</dd>
+
+                <dt class="col-sm-4">Cilindros</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Cilindros)</dd>
+
+                <dt class="col-sm-4">Precio</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Precio)</dd>
+
+                <dt class="col-sm-4">Año</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Anio)</dd>
+
+                <dt class="col-sm-4">Estado</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Estado)</dd>
+
+                <dt class="col-sm-4">Marca</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.Marca.Nombre)</dd>
+
+                <dt class="col-sm-4">Tipo</dt>
+                <dd class="col-sm-8">@Html.DisplayFor(model => model.TipoAuto.Tipo)</dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4 d-flex justify-content-between">
+        <a href="@Url.Action("Edit", new { id = Model.ID_Auto })" class="btn btn-primary">
+            <i class="fas fa-edit"></i> Editar
+        </a>
+        <a href="@Url.Action("Index")" class="btn btn-secondary">
+            <i class="fas fa-arrow-left"></i> Volver a la lista
+        </a>
+    </div>
+</div>

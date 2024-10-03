@@ -1,0 +1,32 @@
+﻿@model VentaAutosMVC.Models.TipoAuto
+
+
+<h2>Eliminar Tipo</h2>
+
+<div>
+    <h4>Tipo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ID_Tipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ID_Tipo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Tipo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Tipo)
+        </dd>
+    </dl>
+</div>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div>
+        <input type="submit" value="Eliminar" class="btn btn-danger" />
+        @Html.ActionLink("Volver a la lista", "Index")
+    </div>
+}

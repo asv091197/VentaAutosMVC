@@ -1,0 +1,967 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="VentaAutosModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Agencia">
+          <Key>
+            <PropertyRef Name="ID_Agencia" />
+          </Key>
+          <Property Name="ID_Agencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="15" />
+          <Property Name="Direccion_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="ID_Auto" />
+          </Key>
+          <Property Name="ID_Auto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Marca_ID" Type="int" />
+          <Property Name="Modelo" Type="varchar" MaxLength="255" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
+          <Property Name="Cilindros" Type="int" />
+          <Property Name="Precio" Type="int" />
+          <Property Name="Anio" Type="int" />
+          <Property Name="Tipo_ID" Type="int" />
+          <Property Name="Estado" Type="bit" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID_Cliente" />
+          </Key>
+          <Property Name="ID_Cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="APP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APM" Type="nvarchar" MaxLength="255" />
+          <Property Name="RFC" Type="nvarchar" MaxLength="13" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="15" />
+          <Property Name="Direccion_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Direcciones">
+          <Key>
+            <PropertyRef Name="ID_Direccion" />
+          </Key>
+          <Property Name="ID_Direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Calle" Type="varchar" MaxLength="50" />
+          <Property Name="Numero" Type="int" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="50" />
+          <Property Name="Estado" Type="varchar" MaxLength="50" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="ID_Marca" />
+          </Key>
+          <Property Name="ID_Marca" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Rol" />
+          </Key>
+          <Property Name="ID_Rol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TipoAuto">
+          <Key>
+            <PropertyRef Name="ID_Tipo" />
+          </Key>
+          <Property Name="ID_Tipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tipo" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_Usuario" Type="varchar" MaxLength="100" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="256" />
+          <Property Name="Rol_ID" Type="int" />
+          <Property Name="Cliente_ID" Type="int" />
+          <Property Name="Vendedor_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Vendedor">
+          <Key>
+            <PropertyRef Name="ID_Vendedor" />
+          </Key>
+          <Property Name="ID_Vendedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="nvarchar" MaxLength="255" />
+          <Property Name="APP" Type="nvarchar" MaxLength="255" />
+          <Property Name="APM" Type="nvarchar" MaxLength="255" />
+          <Property Name="Matricula" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="Telefono" Type="nvarchar" MaxLength="15" />
+          <Property Name="Direccion_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="ID_Venta" />
+          </Key>
+          <Property Name="ID_Venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Auto_ID" Type="int" />
+          <Property Name="Cliente_ID" Type="int" />
+          <Property Name="Vendedor_ID" Type="int" />
+          <Property Name="Estatus" Type="varchar" MaxLength="50" />
+          <Property Name="Agencia_ID" Type="int" />
+          <Property Name="IVA" Type="int" />
+          <Property Name="Fecha" Type="date" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6002: La tabla o vista 'VentaAutos.dbo.view_Ventas_Detalles' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+        <EntityType Name="view_Ventas_Detalles">
+          <Key>
+            <PropertyRef Name="ID_Venta" />
+            <PropertyRef Name="ID_Auto" />
+            <PropertyRef Name="ID_Cliente" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="ID_Vendedor" />
+            <PropertyRef Name="Vendedor" />
+            <PropertyRef Name="ID_Agencia" />
+          </Key>
+          <Property Name="ID_Venta" Type="int" Nullable="false" />
+          <Property Name="ID_Auto" Type="int" Nullable="false" />
+          <Property Name="Marca" Type="nvarchar" MaxLength="255" />
+          <Property Name="Modelo" Type="varchar" MaxLength="255" />
+          <Property Name="Color" Type="varchar" MaxLength="50" />
+          <Property Name="Cilindros" Type="int" />
+          <Property Name="Anio" Type="int" />
+          <Property Name="Precio" Type="int" />
+          <Property Name="Tipo_Auto" Type="varchar" MaxLength="50" />
+          <Property Name="ID_Cliente" Type="int" Nullable="false" />
+          <Property Name="Cliente" Type="nvarchar" MaxLength="767" Nullable="false" />
+          <Property Name="RFC" Type="nvarchar" MaxLength="13" />
+          <Property Name="Email_Cliente" Type="nvarchar" MaxLength="255" />
+          <Property Name="Tel_Cliente" Type="nvarchar" MaxLength="15" />
+          <Property Name="ID_Vendedor" Type="int" Nullable="false" />
+          <Property Name="Vendedor" Type="nvarchar" MaxLength="767" Nullable="false" />
+          <Property Name="Matricula_Vendedor" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email_Vendedor" Type="nvarchar" MaxLength="255" />
+          <Property Name="Tel_Vendedor" Type="nvarchar" MaxLength="15" />
+          <Property Name="ID_Agencia" Type="int" Nullable="false" />
+          <Property Name="Agencia" Type="nvarchar" MaxLength="255" />
+          <Property Name="Tel_Agencia" Type="nvarchar" MaxLength="15" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="IVA" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Total_Precio" Type="decimal" Precision="13" Scale="2" />
+        </EntityType>
+        <Association Name="FK__Agencia__Direcci__09A971A2">
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="0..1" />
+          <End Role="Agencia" Type="Self.Agencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="ID_Direccion" />
+            </Principal>
+            <Dependent Role="Agencia">
+              <PropertyRef Name="Direccion_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Auto__Marca_ID__208CD6FA">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="ID_Marca" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="Marca_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Auto__Tipo_ID__1F98B2C1">
+          <End Role="TipoAuto" Type="Self.TipoAuto" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAuto">
+              <PropertyRef Name="ID_Tipo" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="Tipo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__Direcci__06CD04F7">
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="ID_Direccion" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="Direccion_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__Client__73852659">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID_Cliente" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__Vended__72910220">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__Vended__74794A92">
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendedor">
+              <PropertyRef Name="ID_Vendedor" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Vendedor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vendedor__Direcc__03F0984C">
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="0..1" />
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="ID_Direccion" />
+            </Principal>
+            <Dependent Role="Vendedor">
+              <PropertyRef Name="Direccion_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__Agencia_I__13F1F5EB">
+          <End Role="Agencia" Type="Self.Agencia" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencia">
+              <PropertyRef Name="ID_Agencia" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="Agencia_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__Auto_ID__11158940">
+          <End Role="Auto" Type="Self.Auto" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auto">
+              <PropertyRef Name="ID_Auto" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="Auto_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__Cliente_I__1209AD79">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID_Cliente" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__Vendedor___12FDD1B2">
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendedor">
+              <PropertyRef Name="ID_Vendedor" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="Vendedor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VentaAutosModelStoreContainer">
+          <EntitySet Name="Agencia" EntityType="Self.Agencia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Auto" EntityType="Self.Auto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Direcciones" EntityType="Self.Direcciones" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoAuto" EntityType="Self.TipoAuto" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendedor" EntityType="Self.Vendedor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="view_Ventas_Detalles" EntityType="Self.view_Ventas_Detalles" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [view_Ventas_Detalles].[ID_Venta] AS [ID_Venta], 
+    [view_Ventas_Detalles].[ID_Auto] AS [ID_Auto], 
+    [view_Ventas_Detalles].[Marca] AS [Marca], 
+    [view_Ventas_Detalles].[Modelo] AS [Modelo], 
+    [view_Ventas_Detalles].[Color] AS [Color], 
+    [view_Ventas_Detalles].[Cilindros] AS [Cilindros], 
+    [view_Ventas_Detalles].[Anio] AS [Anio], 
+    [view_Ventas_Detalles].[Precio] AS [Precio], 
+    [view_Ventas_Detalles].[Tipo_Auto] AS [Tipo_Auto], 
+    [view_Ventas_Detalles].[ID_Cliente] AS [ID_Cliente], 
+    [view_Ventas_Detalles].[Cliente] AS [Cliente], 
+    [view_Ventas_Detalles].[RFC] AS [RFC], 
+    [view_Ventas_Detalles].[Email_Cliente] AS [Email_Cliente], 
+    [view_Ventas_Detalles].[Tel_Cliente] AS [Tel_Cliente], 
+    [view_Ventas_Detalles].[ID_Vendedor] AS [ID_Vendedor], 
+    [view_Ventas_Detalles].[Vendedor] AS [Vendedor], 
+    [view_Ventas_Detalles].[Matricula_Vendedor] AS [Matricula_Vendedor], 
+    [view_Ventas_Detalles].[Email_Vendedor] AS [Email_Vendedor], 
+    [view_Ventas_Detalles].[Tel_Vendedor] AS [Tel_Vendedor], 
+    [view_Ventas_Detalles].[ID_Agencia] AS [ID_Agencia], 
+    [view_Ventas_Detalles].[Agencia] AS [Agencia], 
+    [view_Ventas_Detalles].[Tel_Agencia] AS [Tel_Agencia], 
+    [view_Ventas_Detalles].[Fecha] AS [Fecha], 
+    [view_Ventas_Detalles].[IVA] AS [IVA], 
+    [view_Ventas_Detalles].[Total_Precio] AS [Total_Precio]
+    FROM [dbo].[view_Ventas_Detalles] AS [view_Ventas_Detalles]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Agencia__Direcci__09A971A2" Association="Self.FK__Agencia__Direcci__09A971A2">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Agencia" EntitySet="Agencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Auto__Marca_ID__208CD6FA" Association="Self.FK__Auto__Marca_ID__208CD6FA">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Auto__Tipo_ID__1F98B2C1" Association="Self.FK__Auto__Tipo_ID__1F98B2C1">
+            <End Role="TipoAuto" EntitySet="TipoAuto" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__Direcci__06CD04F7" Association="Self.FK__Cliente__Direcci__06CD04F7">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__Client__73852659" Association="Self.FK__Usuarios__Client__73852659">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__Vended__72910220" Association="Self.FK__Usuarios__Vended__72910220">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__Vended__74794A92" Association="Self.FK__Usuarios__Vended__74794A92">
+            <End Role="Vendedor" EntitySet="Vendedor" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vendedor__Direcc__03F0984C" Association="Self.FK__Vendedor__Direcc__03F0984C">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Vendedor" EntitySet="Vendedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__Agencia_I__13F1F5EB" Association="Self.FK__Venta__Agencia_I__13F1F5EB">
+            <End Role="Agencia" EntitySet="Agencia" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__Auto_ID__11158940" Association="Self.FK__Venta__Auto_ID__11158940">
+            <End Role="Auto" EntitySet="Auto" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__Cliente_I__1209AD79" Association="Self.FK__Venta__Cliente_I__1209AD79">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__Vendedor___12FDD1B2" Association="Self.FK__Venta__Vendedor___12FDD1B2">
+            <End Role="Vendedor" EntitySet="Vendedor" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="VentaAutosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Agencia">
+          <Key>
+            <PropertyRef Name="ID_Agencia" />
+          </Key>
+          <Property Name="ID_Agencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion_ID" Type="Int32" />
+          <NavigationProperty Name="Direcciones" Relationship="Self.FK__Agencia__Direcci__09A971A2" FromRole="Agencia" ToRole="Direcciones" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK__Venta__Agencia_I__13F1F5EB" FromRole="Agencia" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Auto">
+          <Key>
+            <PropertyRef Name="ID_Auto" />
+          </Key>
+          <Property Name="ID_Auto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Marca_ID" Type="Int32" />
+          <Property Name="Modelo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cilindros" Type="Int32" />
+          <Property Name="Precio" Type="Int32" />
+          <Property Name="Anio" Type="Int32" />
+          <Property Name="Tipo_ID" Type="Int32" />
+          <Property Name="Estado" Type="Boolean" />
+          <NavigationProperty Name="Marca" Relationship="Self.FK__Auto__Marca_ID__208CD6FA" FromRole="Auto" ToRole="Marca" />
+          <NavigationProperty Name="TipoAuto" Relationship="Self.FK__Auto__Tipo_ID__1F98B2C1" FromRole="Auto" ToRole="TipoAuto" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK__Venta__Auto_ID__11158940" FromRole="Auto" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="ID_Cliente" />
+          </Key>
+          <Property Name="ID_Cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="APP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="APM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="RFC" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion_ID" Type="Int32" />
+          <NavigationProperty Name="Direcciones" Relationship="Self.FK__Cliente__Direcci__06CD04F7" FromRole="Cliente" ToRole="Direcciones" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__Client__73852659" FromRole="Cliente" ToRole="Usuarios" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK__Venta__Cliente_I__1209AD79" FromRole="Cliente" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Direcciones">
+          <Key>
+            <PropertyRef Name="ID_Direccion" />
+          </Key>
+          <Property Name="ID_Direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Calle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Numero" Type="Int32" />
+          <Property Name="Ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Agencia" Relationship="Self.FK__Agencia__Direcci__09A971A2" FromRole="Direcciones" ToRole="Agencia" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Cliente__Direcci__06CD04F7" FromRole="Direcciones" ToRole="Cliente" />
+          <NavigationProperty Name="Vendedor" Relationship="Self.FK__Vendedor__Direcc__03F0984C" FromRole="Direcciones" ToRole="Vendedor" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="ID_Marca" />
+          </Key>
+          <Property Name="ID_Marca" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK__Auto__Marca_ID__208CD6FA" FromRole="Marca" ToRole="Auto" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="ID_Rol" />
+          </Key>
+          <Property Name="ID_Rol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__Vended__72910220" FromRole="Roles" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TipoAuto">
+          <Key>
+            <PropertyRef Name="ID_Tipo" />
+          </Key>
+          <Property Name="ID_Tipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tipo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK__Auto__Tipo_ID__1F98B2C1" FromRole="TipoAuto" ToRole="Auto" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_Usuario" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="Rol_ID" Type="Int32" />
+          <Property Name="Cliente_ID" Type="Int32" />
+          <Property Name="Vendedor_ID" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Usuarios__Client__73852659" FromRole="Usuarios" ToRole="Cliente" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Usuarios__Vended__72910220" FromRole="Usuarios" ToRole="Roles" />
+          <NavigationProperty Name="Vendedor" Relationship="Self.FK__Usuarios__Vended__74794A92" FromRole="Usuarios" ToRole="Vendedor" />
+        </EntityType>
+        <EntityType Name="Vendedor">
+          <Key>
+            <PropertyRef Name="ID_Vendedor" />
+          </Key>
+          <Property Name="ID_Vendedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="APP" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="APM" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Matricula" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Telefono" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Direccion_ID" Type="Int32" />
+          <NavigationProperty Name="Direcciones" Relationship="Self.FK__Vendedor__Direcc__03F0984C" FromRole="Vendedor" ToRole="Direcciones" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Usuarios__Vended__74794A92" FromRole="Vendedor" ToRole="Usuarios" />
+          <NavigationProperty Name="Venta" Relationship="Self.FK__Venta__Vendedor___12FDD1B2" FromRole="Vendedor" ToRole="Venta" />
+        </EntityType>
+        <EntityType Name="Venta">
+          <Key>
+            <PropertyRef Name="ID_Venta" />
+          </Key>
+          <Property Name="ID_Venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Auto_ID" Type="Int32" />
+          <Property Name="Cliente_ID" Type="Int32" />
+          <Property Name="Vendedor_ID" Type="Int32" />
+          <Property Name="Estatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Agencia_ID" Type="Int32" />
+          <Property Name="IVA" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Agencia" Relationship="Self.FK__Venta__Agencia_I__13F1F5EB" FromRole="Venta" ToRole="Agencia" />
+          <NavigationProperty Name="Auto" Relationship="Self.FK__Venta__Auto_ID__11158940" FromRole="Venta" ToRole="Auto" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK__Venta__Cliente_I__1209AD79" FromRole="Venta" ToRole="Cliente" />
+          <NavigationProperty Name="Vendedor" Relationship="Self.FK__Venta__Vendedor___12FDD1B2" FromRole="Venta" ToRole="Vendedor" />
+        </EntityType>
+        <EntityType Name="view_Ventas_Detalles">
+          <Key>
+            <PropertyRef Name="ID_Venta" />
+            <PropertyRef Name="ID_Auto" />
+            <PropertyRef Name="ID_Cliente" />
+            <PropertyRef Name="Cliente" />
+            <PropertyRef Name="ID_Vendedor" />
+            <PropertyRef Name="Vendedor" />
+            <PropertyRef Name="ID_Agencia" />
+          </Key>
+          <Property Name="ID_Venta" Type="Int32" Nullable="false" />
+          <Property Name="ID_Auto" Type="Int32" Nullable="false" />
+          <Property Name="Marca" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Modelo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cilindros" Type="Int32" />
+          <Property Name="Anio" Type="Int32" />
+          <Property Name="Precio" Type="Int32" />
+          <Property Name="Tipo_Auto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ID_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="Cliente" Type="String" MaxLength="767" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RFC" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="Email_Cliente" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Tel_Cliente" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Vendedor" Type="Int32" Nullable="false" />
+          <Property Name="Vendedor" Type="String" MaxLength="767" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Matricula_Vendedor" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email_Vendedor" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Tel_Vendedor" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Agencia" Type="Int32" Nullable="false" />
+          <Property Name="Agencia" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Tel_Agencia" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="IVA" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Total_Precio" Type="Decimal" Precision="13" Scale="2" />
+        </EntityType>
+        <Association Name="FK__Agencia__Direcci__09A971A2">
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="0..1" />
+          <End Role="Agencia" Type="Self.Agencia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="ID_Direccion" />
+            </Principal>
+            <Dependent Role="Agencia">
+              <PropertyRef Name="Direccion_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__Agencia_I__13F1F5EB">
+          <End Role="Agencia" Type="Self.Agencia" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Agencia">
+              <PropertyRef Name="ID_Agencia" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="Agencia_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Auto__Marca_ID__208CD6FA">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="ID_Marca" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="Marca_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Auto__Tipo_ID__1F98B2C1">
+          <End Role="TipoAuto" Type="Self.TipoAuto" Multiplicity="0..1" />
+          <End Role="Auto" Type="Self.Auto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoAuto">
+              <PropertyRef Name="ID_Tipo" />
+            </Principal>
+            <Dependent Role="Auto">
+              <PropertyRef Name="Tipo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__Auto_ID__11158940">
+          <End Role="Auto" Type="Self.Auto" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Auto">
+              <PropertyRef Name="ID_Auto" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="Auto_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cliente__Direcci__06CD04F7">
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="0..1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="ID_Direccion" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="Direccion_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__Client__73852659">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID_Cliente" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__Cliente_I__1209AD79">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="ID_Cliente" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="Cliente_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Vendedor__Direcc__03F0984C">
+          <End Role="Direcciones" Type="Self.Direcciones" Multiplicity="0..1" />
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direcciones">
+              <PropertyRef Name="ID_Direccion" />
+            </Principal>
+            <Dependent Role="Vendedor">
+              <PropertyRef Name="Direccion_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__Vended__72910220">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="ID_Rol" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Rol_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Usuarios__Vended__74794A92">
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendedor">
+              <PropertyRef Name="ID_Vendedor" />
+            </Principal>
+            <Dependent Role="Usuarios">
+              <PropertyRef Name="Vendedor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Venta__Vendedor___12FDD1B2">
+          <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="0..1" />
+          <End Role="Venta" Type="Self.Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendedor">
+              <PropertyRef Name="ID_Vendedor" />
+            </Principal>
+            <Dependent Role="Venta">
+              <PropertyRef Name="Vendedor_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="VentaAutosEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Agencia" EntityType="Self.Agencia" />
+          <EntitySet Name="Auto" EntityType="Self.Auto" />
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Direcciones" EntityType="Self.Direcciones" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TipoAuto" EntityType="Self.TipoAuto" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Vendedor" EntityType="Self.Vendedor" />
+          <EntitySet Name="Venta" EntityType="Self.Venta" />
+          <EntitySet Name="view_Ventas_Detalles" EntityType="Self.view_Ventas_Detalles" />
+          <AssociationSet Name="FK__Agencia__Direcci__09A971A2" Association="Self.FK__Agencia__Direcci__09A971A2">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Agencia" EntitySet="Agencia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__Agencia_I__13F1F5EB" Association="Self.FK__Venta__Agencia_I__13F1F5EB">
+            <End Role="Agencia" EntitySet="Agencia" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Auto__Marca_ID__208CD6FA" Association="Self.FK__Auto__Marca_ID__208CD6FA">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Auto__Tipo_ID__1F98B2C1" Association="Self.FK__Auto__Tipo_ID__1F98B2C1">
+            <End Role="TipoAuto" EntitySet="TipoAuto" />
+            <End Role="Auto" EntitySet="Auto" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__Auto_ID__11158940" Association="Self.FK__Venta__Auto_ID__11158940">
+            <End Role="Auto" EntitySet="Auto" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cliente__Direcci__06CD04F7" Association="Self.FK__Cliente__Direcci__06CD04F7">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__Client__73852659" Association="Self.FK__Usuarios__Client__73852659">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__Cliente_I__1209AD79" Association="Self.FK__Venta__Cliente_I__1209AD79">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Vendedor__Direcc__03F0984C" Association="Self.FK__Vendedor__Direcc__03F0984C">
+            <End Role="Direcciones" EntitySet="Direcciones" />
+            <End Role="Vendedor" EntitySet="Vendedor" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__Vended__72910220" Association="Self.FK__Usuarios__Vended__72910220">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Usuarios__Vended__74794A92" Association="Self.FK__Usuarios__Vended__74794A92">
+            <End Role="Vendedor" EntitySet="Vendedor" />
+            <End Role="Usuarios" EntitySet="Usuarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Venta__Vendedor___12FDD1B2" Association="Self.FK__Venta__Vendedor___12FDD1B2">
+            <End Role="Vendedor" EntitySet="Vendedor" />
+            <End Role="Venta" EntitySet="Venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="VentaAutosModelStoreContainer" CdmEntityContainer="VentaAutosEntities1">
+          <EntitySetMapping Name="Agencia">
+            <EntityTypeMapping TypeName="VentaAutosModel.Agencia">
+              <MappingFragment StoreEntitySet="Agencia">
+                <ScalarProperty Name="ID_Agencia" ColumnName="ID_Agencia" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion_ID" ColumnName="Direccion_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Auto">
+            <EntityTypeMapping TypeName="VentaAutosModel.Auto">
+              <MappingFragment StoreEntitySet="Auto">
+                <ScalarProperty Name="ID_Auto" ColumnName="ID_Auto" />
+                <ScalarProperty Name="Marca_ID" ColumnName="Marca_ID" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Cilindros" ColumnName="Cilindros" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Anio" ColumnName="Anio" />
+                <ScalarProperty Name="Tipo_ID" ColumnName="Tipo_ID" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="VentaAutosModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="APP" ColumnName="APP" />
+                <ScalarProperty Name="APM" ColumnName="APM" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion_ID" ColumnName="Direccion_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direcciones">
+            <EntityTypeMapping TypeName="VentaAutosModel.Direcciones">
+              <MappingFragment StoreEntitySet="Direcciones">
+                <ScalarProperty Name="ID_Direccion" ColumnName="ID_Direccion" />
+                <ScalarProperty Name="Calle" ColumnName="Calle" />
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="VentaAutosModel.Marca">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="ID_Marca" ColumnName="ID_Marca" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="VentaAutosModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="ID_Rol" ColumnName="ID_Rol" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="VentaAutosModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoAuto">
+            <EntityTypeMapping TypeName="VentaAutosModel.TipoAuto">
+              <MappingFragment StoreEntitySet="TipoAuto">
+                <ScalarProperty Name="ID_Tipo" ColumnName="ID_Tipo" />
+                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="VentaAutosModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Nombre_Usuario" ColumnName="Nombre_Usuario" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Rol_ID" ColumnName="Rol_ID" />
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Vendedor_ID" ColumnName="Vendedor_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendedor">
+            <EntityTypeMapping TypeName="VentaAutosModel.Vendedor">
+              <MappingFragment StoreEntitySet="Vendedor">
+                <ScalarProperty Name="ID_Vendedor" ColumnName="ID_Vendedor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="APP" ColumnName="APP" />
+                <ScalarProperty Name="APM" ColumnName="APM" />
+                <ScalarProperty Name="Matricula" ColumnName="Matricula" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion_ID" ColumnName="Direccion_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Venta">
+            <EntityTypeMapping TypeName="VentaAutosModel.Venta">
+              <MappingFragment StoreEntitySet="Venta">
+                <ScalarProperty Name="ID_Venta" ColumnName="ID_Venta" />
+                <ScalarProperty Name="Auto_ID" ColumnName="Auto_ID" />
+                <ScalarProperty Name="Cliente_ID" ColumnName="Cliente_ID" />
+                <ScalarProperty Name="Vendedor_ID" ColumnName="Vendedor_ID" />
+                <ScalarProperty Name="Estatus" ColumnName="Estatus" />
+                <ScalarProperty Name="Agencia_ID" ColumnName="Agencia_ID" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="view_Ventas_Detalles">
+            <EntityTypeMapping TypeName="VentaAutosModel.view_Ventas_Detalles">
+              <MappingFragment StoreEntitySet="view_Ventas_Detalles">
+                <ScalarProperty Name="ID_Venta" ColumnName="ID_Venta" />
+                <ScalarProperty Name="ID_Auto" ColumnName="ID_Auto" />
+                <ScalarProperty Name="Marca" ColumnName="Marca" />
+                <ScalarProperty Name="Modelo" ColumnName="Modelo" />
+                <ScalarProperty Name="Color" ColumnName="Color" />
+                <ScalarProperty Name="Cilindros" ColumnName="Cilindros" />
+                <ScalarProperty Name="Anio" ColumnName="Anio" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="Tipo_Auto" ColumnName="Tipo_Auto" />
+                <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+                <ScalarProperty Name="Cliente" ColumnName="Cliente" />
+                <ScalarProperty Name="RFC" ColumnName="RFC" />
+                <ScalarProperty Name="Email_Cliente" ColumnName="Email_Cliente" />
+                <ScalarProperty Name="Tel_Cliente" ColumnName="Tel_Cliente" />
+                <ScalarProperty Name="ID_Vendedor" ColumnName="ID_Vendedor" />
+                <ScalarProperty Name="Vendedor" ColumnName="Vendedor" />
+                <ScalarProperty Name="Matricula_Vendedor" ColumnName="Matricula_Vendedor" />
+                <ScalarProperty Name="Email_Vendedor" ColumnName="Email_Vendedor" />
+                <ScalarProperty Name="Tel_Vendedor" ColumnName="Tel_Vendedor" />
+                <ScalarProperty Name="ID_Agencia" ColumnName="ID_Agencia" />
+                <ScalarProperty Name="Agencia" ColumnName="Agencia" />
+                <ScalarProperty Name="Tel_Agencia" ColumnName="Tel_Agencia" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="IVA" ColumnName="IVA" />
+                <ScalarProperty Name="Total_Precio" ColumnName="Total_Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,50 @@
+﻿@model VentaAutosMVC.Models.Direcciones
+
+@{
+    ViewBag.Title = "Detalles de la Dirección";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-sm">
+        <div class="card-header">
+            <h4 class="card-title">Detalles de la Dirección</h4>
+        </div>
+        <div class="card-body">
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th scope="row">@Html.DisplayNameFor(model => model.Calle)</th>
+                        <td>@Html.DisplayFor(model => model.Calle)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">@Html.DisplayNameFor(model => model.Numero)</th>
+                        <td>@Html.DisplayFor(model => model.Numero)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">@Html.DisplayNameFor(model => model.Ciudad)</th>
+                        <td>@Html.DisplayFor(model => model.Ciudad)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">@Html.DisplayNameFor(model => model.Estado)</th>
+                        <td>@Html.DisplayFor(model => model.Estado)</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">@Html.DisplayNameFor(model => model.CodigoPostal)</th>
+                        <td>@Html.DisplayFor(model => model.CodigoPostal)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="card-footer text-center">
+            <a href="@Url.Action("Edit", new { id = Model.ID_Direccion })" class="btn btn-primary">
+                <i class="fas fa-edit"></i> Editar
+            </a>
+            <a href="@Url.Action("Index")" class="btn btn-secondary">
+                <i class="fas fa-list"></i> Volver a la lista
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Enlace para cargar los íconos de FontAwesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="1c2ac00497e34c2eb67b0a815281d6de" Name="Diagram1">
+        <EntityTypeShape EntityType="VentaAutosModel.Agencia" Width="1.5" PointX="3" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.Auto" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.Cliente" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.Direcciones" Width="1.5" PointX="0.75" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.Marca" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.Roles" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.TipoAuto" Width="1.5" PointX="0.75" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.Usuarios" Width="1.5" PointX="5.25" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.Vendedor" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.Venta" Width="1.5" PointX="5.25" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VentaAutosModel.view_Ventas_Detalles" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="VentaAutosModel.FK__Agencia__Direcci__09A971A2" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Venta__Agencia_I__13F1F5EB" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Auto__Marca_ID__208CD6FA" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Auto__Tipo_ID__1F98B2C1" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Venta__Auto_ID__11158940" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Cliente__Direcci__06CD04F7" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Usuarios__Client__73852659" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Venta__Cliente_I__1209AD79" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Vendedor__Direcc__03F0984C" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Usuarios__Vended__72910220" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Usuarios__Vended__74794A92" ManuallyRouted="false" />
+        <AssociationConnector Association="VentaAutosModel.FK__Venta__Vendedor___12FDD1B2" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

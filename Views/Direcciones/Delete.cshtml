@@ -1,0 +1,57 @@
+﻿@model VentaAutosMVC.Models.Direcciones
+
+@{
+    ViewBag.Title = "Eliminar Dirección";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Eliminar Dirección</h2>
+
+    <h3 class="text-danger">¿Estás seguro de que deseas eliminar esta dirección?</h3>
+
+    <div class="card shadow-sm p-4 mt-3">
+        <h4 class="card-title">Detalles de la Dirección</h4>
+        <hr />
+        <table class="table table-striped">
+            <tbody>
+                <tr>
+                    <th scope="row">@Html.DisplayNameFor(model => model.Calle)</th>
+                    <td>@Html.DisplayFor(model => model.Calle)</td>
+                </tr>
+                <tr>
+                    <th scope="row">@Html.DisplayNameFor(model => model.Numero)</th>
+                    <td>@Html.DisplayFor(model => model.Numero)</td>
+                </tr>
+                <tr>
+                    <th scope="row">@Html.DisplayNameFor(model => model.Ciudad)</th>
+                    <td>@Html.DisplayFor(model => model.Ciudad)</td>
+                </tr>
+                <tr>
+                    <th scope="row">@Html.DisplayNameFor(model => model.Estado)</th>
+                    <td>@Html.DisplayFor(model => model.Estado)</td>
+                </tr>
+                <tr>
+                    <th scope="row">@Html.DisplayNameFor(model => model.CodigoPostal)</th>
+                    <td>@Html.DisplayFor(model => model.CodigoPostal)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="d-flex justify-content-between mt-4">
+                <button type="submit" class="btn btn-danger">
+                    <i class="fas fa-trash-alt"></i> Eliminar
+                </button>
+                <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Volver a la lista
+                </a>
+            </div>
+        }
+    </div>
+</div>
+
+<!-- Enlace para cargar los íconos de FontAwesome -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>

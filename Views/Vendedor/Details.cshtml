@@ -1,0 +1,72 @@
+﻿@model VentaAutosMVC.Models.Vendedor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4">Vendedor Details</h2>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Vendedor Information</h4>
+            <hr />
+
+            <dl class="row">
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Nombre)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Nombre)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.APP)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.APP)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.APM)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.APM)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Matricula)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Matricula)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Email)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Email)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Telefono)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Telefono)
+                </dd>
+
+                <dt class="col-sm-3">
+                    @Html.DisplayNameFor(model => model.Direcciones.Calle)
+                </dt>
+                <dd class="col-sm-9">
+                    @Html.DisplayFor(model => model.Direcciones.Calle)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        @Html.ActionLink("Edit", "Edit", new { id = Model.ID_Vendedor }, new { @class = "btn btn-warning" })
+        @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary ml-2" })
+    </div>
+</div>

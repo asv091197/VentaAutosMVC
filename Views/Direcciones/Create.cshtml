@@ -1,0 +1,63 @@
+﻿@model VentaAutosMVC.Models.Direcciones
+
+@{
+    ViewBag.Title = "Crear Dirección";
+}
+
+<div class="container mt-5">
+    <h2 class="mb-4">Crear Dirección</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="card shadow-sm p-4">
+            <h4 class="card-title">Información de la Dirección</h4>
+            <hr />
+
+            @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Calle, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.Calle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Calle, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Numero, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.Numero, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Numero, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Ciudad, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.Ciudad, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Ciudad, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.Estado, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.Estado, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Estado, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="mb-3">
+                @Html.LabelFor(model => model.CodigoPostal, htmlAttributes: new { @class = "form-label" })
+                @Html.EditorFor(model => model.CodigoPostal, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CodigoPostal, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="d-flex justify-content-between">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Crear
+                </button>
+                <a href="@Url.Action("Index")" class="btn btn-secondary">
+                    <i class="fas fa-list"></i> Volver a la lista
+                </a>
+            </div>
+        </div>
+    }
+
+    <!-- Enlace para cargar los íconos de FontAwesome -->
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</div>
